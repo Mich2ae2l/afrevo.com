@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Opportunities | Afrevo Global Careers</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-image: url('images/bg.webp');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #003366;
+    }
+    header {
+  background-color: #004d4d;
+  color: white;
+  padding: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 45px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+    .hero {
+      background-color: rgba(0, 77, 77, 0.7);
+      padding: 60px 20px;
+      text-align: center;
+      color: white;
+    }
+    .main-content {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+    }
+    .category-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 30px auto;
+    }
+    .category-buttons button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #009966;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .category-buttons button.active {
+      background-color: #004d4d;
+    }
+    .search-box {
+      max-width: 400px;
+      margin: 0 auto 30px;
+      display: flex;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #009966;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .job-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 77, 77, 0.1);
+    }
+    .job-card h3 {
+      margin-bottom: 5px;
+    }
+    .job-card small {
+      font-size: 12px;
+      color: #555;
+    }
+    .job-card p {
+      font-size: 14px;
+      color: #444;
+    }
+    .apply-button {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #004d4d;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .apply-button:hover {
+      background-color: #003333;
+    }
+    footer {
+      background-color: #003333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    @media screen and (max-width: 768px) {
+      header .logo {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav ul {
+        flex-direction: column;
+        background-color: rgba(0, 77, 77, 0.9);
+        padding: 10px;
+        border-radius: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+  <div class="header-container">
+    <div class="logo">
+      <img src="images/logo.png" alt="Afrevo Logo" />
+      <h1>Afrevo Global Careers</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="opportunities.html">Opportunities</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <section class="hero">
+    <h1>Explore Global Job Opportunities</h1>
+    <p>Professional positions often offer the flexibility to be performed remotely or on-site, depending on the nature of the role and organizational requirements. In contrast, skilled and unskilled labor positions generally necessitate on-site attendance due to the hands-on and physical nature of the work involved.</p>
+  </section>
+
+  <section class="main-content">
+    <div class="category-buttons">
+      <button onclick="filterJobs('Professional', this)" class="active">Professional</button>
+      <button onclick="filterJobs('Skilled', this)">Skilled</button>
+      <button onclick="filterJobs('Unskilled', this)">Unskilled</button>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search by title or code..." oninput="searchJobs()" />
+    </div>
+
+    <div id="jobContainer" class="job-grid"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Afrevo Global Careers. All rights reserved.</p>
+  </footer>
+
+  <script>
+      const jobs = {
+  Professional: [
+    { title: "Registered Nurse", description: "Provides medical care to patients in nursing homes.", code: "RN785" },
+    { title: "Software Engineer", description: "Designs and builds software systems for businesses or users.(Remote work)", code: "SE913" },
+    { title: "Data Scientist", description: "Analyzes large data sets to identify trends and insights.(Remote work)", code: "DS201" },
+    { title: "Civil Engineer", description: "Designs and oversees construction projects like roads and buildings.(Remote work)", code: "CE562" },
+    { title: "Architect", description: "Plans and designs buildings and structures.(Remote work)", code: "AR472" },
+    { title: "Nurse Practitioner", description: "Provides primary care and treatment in healthcare settings.", code: "NP408" },
+    { title: "Marketing Manager", description: "Oversees marketing campaigns and brand management.(Remote work)", code: "MM957" },
+    { title: "Financial Analyst", description: "Evaluates financial data to assist in business decisions.(Remote work)", code: "FA614" },
+    { title: "Business Consultant", description: "Advises organizations on business strategy and operations.(Remote work)", code: "BC072" },
+    { title: "Sales Manager", description: "Leads sales teams and develops sales strategies.(Remote work)", code: "SM286" },
+    { title: "IT Support Specialist", description: "Provides technical support for hardware and software issues.(Remote work)", code: "IT823" },
+    { title: "Business Analyst", description: "Analyzes business needs and data to propose solutions.(Remote work)", code: "BA765" },
+    { title: "Web Developer", description: "Develops and maintains websites and web applications.(Remote work)", code: "WD923" },
+    { title: "UX/UI Designer", description: "Designs user interfaces and optimizes user experience.(Remote work)", code: "UX754" },
+    { title: "Creative Director", description: "Leads creative projects and design teams.(Remote work)", code: "CD421" },
+    { title: "Graphic Designer", description: "Creates visual concepts using software to communicate ideas.(Remote work)", code: "GD873" },
+    { title: "Content Writer", description: "Creates written content for websites, blogs, and marketing materials.(Remote work)", code: "CW029" },
+    { title: "SEO Specialist", description: "Optimizes websites to rank higher in search engines.(Remote work)", code: "SEO566" },
+    { title: "Brand Manager", description: "Develops strategies to enhance brand awareness and loyalty.(Remote work)", code: "BM738" },
+    { title: "Tax Advisor", description: "Provides advice on tax issues and filing for businesses and individuals.(Remote work)", code: "TA103" },
+    { title: "Financial Planner", description: "Assists individuals in managing their financial resources and investments.(Remote work)", code: "FP720" },
+    { title: "Copywriter", description: "Writes content for marketing materials, advertisements, and websites.(Remote work)", code: "CW049" },
+    { title: "Web Designer", description: "Designs and creates the layout, visual appearance, and usability of websites.(Remote work)", code: "WD923" },
+    { title: "Digital Marketing Specialist", description: "Develops and executes marketing campaigns online.(Remote work)", code: "DMS874" },
+    
+  ],
+  Skilled: [
+    { title: "Electrician", description: "Installs and maintains electrical wiring and systems.", code: "EL274" },
+    { title: "Plumber", description: "Fixes and installs pipes, water systems, and fixtures.", code: "PL128" },
+    { title: "Welder", description: "Joins metal parts using heat and tools.", code: "WL603" },
+    { title: "Carpenter", description: "Builds, installs, and repairs wooden structures.", code: "CP729" },
+    { title: "Painter", description: "Applies paint, stain, and coatings to buildings and structures.", code: "PT135" },
+    { title: "Mason", description: "Builds structures from stone, brick, and concrete.", code: "MS903" },
+    { title: "HVAC Technician", description: "Installs and repairs heating, ventilation, and air conditioning systems.", code: "HV872" },
+    { title: "Mechanic", description: "Repairs and maintains vehicles and machinery.", code: "MC748" },
+    { title: "Landscaper", description: "Designs and maintains outdoor spaces like gardens and lawns.", code: "LS934" },
+    { title: "Tiler", description: "Installs tiles on floors, walls, and other surfaces.", code: "TL451" },
+    { title: "Fabricator", description: "Shapes and assembles metal parts for structures and machinery.", code: "FB672" },
+    { title: "Roofing Contractor", description: "Installs and repairs roofs on buildings.", code: "RC285" },
+    { title: "Flooring Specialist", description: "Installs and repairs flooring in residential and commercial spaces.", code: "FS431" },
+    { title: "Sewer", description: "Installs and repairs sewer systems and piping.", code: "SR208" },
+    { title: "Ironworker", description: "Installs and maintains iron or steel structures in construction.", code: "IW409" },
+    { title: "Rigging Specialist", description: "Installs and maintains rigging equipment used for construction.", code: "RS983" },
+    { title: "Concrete Worker", description: "Prepares and pours concrete for construction projects.", code: "CW301" },
+    { title: "Drywaller", description: "Installs and finishes drywall in homes and buildings.", code: "DW752" },
+    { title: "Insulation Specialist", description: "Installs and maintains insulation in buildings.", code: "IS210" },
+    { title: "Sheet Metal Worker", description: "Fabricates and installs sheet metal components in buildings.", code: "SM102" },
+    { title: "Bricklayer", description: "Builds structures using bricks and mortar.", code: "BL105" },
+    { title: "Excavator Operator", description: "Operates heavy machinery for digging and excavation.", code: "EO356" },
+    { title: "Forklift Operator", description: "Operates forklifts to move materials in warehouses and factories.", code: "FO427" },
+    { title: "Lineman", description: "Installs and maintains power lines.", code: "LM238" },
+    { title: "Heavy Equipment Operator", description: "Operates large machinery used in construction, mining, and other industries.", code: "HE936" },
+    { title: "Crane Operator", description: "Operates cranes to lift, move, and position materials in construction.", code: "CO251" },
+    { title: "Paving Equipment Operator", description: "Operates machinery for paving roads and surfaces.", code: "PE193" },
+    { title: "Tractor Operator", description: "Operates tractors to perform agricultural or construction tasks.", code: "TO175" },
+    { title: "Blaster", description: "Uses explosives to break rocks and other materials for construction or mining.", code: "BL430" },
+    { title: "Boilermaker", description: "Fabricates and assembles pressure vessels and boilers.", code: "BM059" },
+    { title: "Air Conditioning Mechanic", description: "Installs and repairs air conditioning systems.", code: "AC185" },
+    { title: "Welding Inspector", description: "Inspects welding work for quality and safety.", code: "WI903" },
+    { title: "Plumbing Inspector", description: "Inspects plumbing systems and installations.", code: "PI602" },
+    { title: "Scaffold Builder", description: "Constructs scaffolding for construction projects.", code: "SB748" },
+    { title: "Lather", description: "Installs lath for plastering on walls and ceilings.", code: "LT134" },
+    { title: "Joiner", description: "Works with wood to create or repair structures and furniture.", code: "JN903" },
+    { title: "Pipelayer", description: "Installs piping systems for water, gas, and sewage.", code: "PL865" },
+    { title: "Elevator Installer", description: "Installs and maintains elevators and lifts.", code: "EI370" },
+    { title: "Glazier", description: "Installs glass windows and fixtures in buildings.", code: "GL928" },
+    { title: "Refrigeration Mechanic", description: "Installs and maintains refrigeration systems.", code: "RM601" },
+    { title: "Pump Technician", description: "Repairs and maintains pumps for various systems.", code: "PT389" }
+  ],
+  Unskilled: [
+    { title: "Warehouse Worker", description: "Handles inventory, packaging, and shipping in warehouses.", code: "WW118" },
+    { title: "Cleaner", description: "Maintains cleanliness in offices, hotels, or homes.", code: "CL826" },
+    { title: "Farm Worker", description: "Assists in planting, harvesting, and livestock care.", code: "FW397" },
+    { title: "Laborer", description: "Performs various physical tasks on construction sites or in factories.", code: "LB263" },
+    { title: "Delivery Driver", description: "Delivers goods to customers or businesses.", code: "DD741" },
+    { title: "Janitor", description: "Cleans and maintains buildings like schools, hospitals, or offices.", code: "JN408" },
+    { title: "Security Guard", description: "Monitors and ensures the security of a building or site.", code: "SG852" },
+    { title: "Mover", description: "Assists with moving furniture and belongings during relocation.", code: "MV129" },
+    { title: "Housekeeper", description: "Cleans and organizes residential or hotel rooms.", code: "HK290" },
+    { title: "Packager", description: "Packages products for shipment or retail.", code: "PG347" },
+    { title: "Dishwasher", description: "Washes dishes and kitchen utensils in restaurants or hotels.", code: "DW157" },
+    { title: "Waiter", description: "Serves food and beverages to customers in restaurants or cafes.", code: "WT310" },
+    { title: "Cashier", description: "Handles transactions and customer purchases at retail locations.", code: "CS842" },
+    { title: "Construction Laborer", description: "Assists with manual labor on construction sites.", code: "CL794" },
+    { title: "Groundskeeper", description: "Maintains the grounds of buildings or outdoor spaces.", code: "GK537" },
+    { title: "Truck Driver", description: "Drives a truck to transport goods across various distances.", code: "TD710" },
+    { title: "Laundry Attendant", description: "Washes, dries, and folds laundry in hotels or laundromats.", code: "LA234" },
+    { title: "Recycling Worker", description: "Sorts and processes recyclable materials for disposal or repurposing.", code: "RW945" },
+    { title: "Painter's Helper", description: "Assists painters in preparing surfaces and materials.", code: "PH634" },
+    { title: "Street Sweeper", description: "Operates machinery to clean streets and public spaces.", code: "SS702" },
+    { title: "Construction Cleaner", description: "Cleans construction sites by removing debris and materials.", code: "CC203" },
+    { title: "Farm Hand", description: "Helps farmers with various tasks such as planting and harvesting.", code: "FH481" },
+    { title: "Factory Worker", description: "Performs various tasks in a manufacturing environment.", code: "FW731" },
+    { title: "Maintenance Worker", description: "Maintains and repairs building facilities and equipment.", code: "MW825" },
+    { title: "Warehouse Associate", description: "Assists with the management and distribution of inventory.", code: "WA541" },
+    { title: "Packing Associate", description: "Assists with the packing and labeling of products.", code: "PA953" },
+    { title: "Forklift Driver", description: "Operates a forklift to move materials and goods in warehouses.", code: "FD110" },
+    { title: "Gardener", description: "Maintains and tends to gardens and outdoor areas.", code: "GD298" },
+    { title: "Caretaker", description: "Provides care and assistance to individuals in homes or facilities.", code: "CT710" },
+    { title: "Childcare Assistant", description: "Assists in caring for and educating children in daycare settings.", code: "CA840" },
+    { title: "Food Service Worker", description: "Prepares and serves food in restaurants, cafeterias, or food trucks.", code: "FS571" },
+    { title: "Construction Helper", description: "Supports various tasks in construction projects.", code: "CH302" },
+    { title: "Store Clerk", description: "Assists customers in stores, handles inventory, and checks out purchases.", code: "SC946" },
+    { title: "Laundry Worker", description: "Sorts, washes, and folds laundry for cleaning services.", code: "LW265" },
+    { title: "Assistant Cook", description: "Assists in cooking and preparing meals in restaurants or cafeterias.", code: "AC111" },
+    { title: "Cleaner Assistant", description: "Supports cleaning duties in offices or residential buildings.", code: "CA745" }
+  ]
+};
+
+    let currentJobs = [];
+
+    function filterJobs(category, btn) {
+      currentJobs = jobs[category] || [];
+      document.querySelectorAll('.category-buttons button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      displayJobs(currentJobs);
+    }
+
+    function displayJobs(list) {
+      const container = document.getElementById("jobContainer");
+      container.innerHTML = "";
+      list.forEach(job => {
+        const card = document.createElement("div");
+        card.className = "job-card";
+        card.innerHTML = `
+          <h3>${job.title}</h3>
+          <small>Job Code: ${job.code}</small>
+          <p>${job.description}</p>
+          <a href="application.html?job=${encodeURIComponent(job.title)}&code=${job.code}" class="apply-button">Apply Now</a>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function searchJobs() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const results = currentJobs.filter(job =>
+        job.title.toLowerCase().includes(input) || job.code.toLowerCase().includes(input)
+      );
+      displayJobs(results);
+    }
+
+    // Default to Professional
+    window.onload = () => {
+      const defaultBtn = document.querySelector('.category-buttons button');
+      filterJobs('Professional', defaultBtn);
+    };
+  </script>
+
+</body>
+</html>

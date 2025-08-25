@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thank you — Afrevo Global Careers</title>
+  <style>
+    :root{
+      --accent:#00796b; --accent-2:#00c29a; --muted:#666;
+      --card-radius:12px; --maxw:900px;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    body{margin:0;padding:28px;background:linear-gradient(135deg,#f0fbf7 0,#f2f7ff 100%);color:#222}
+    .wrap{max-width:var(--maxw);margin:0 auto}
+    .card{background:white;border-radius:var(--card-radius);padding:26px;box-shadow:0 10px 30px rgba(8,30,30,0.06)}
+    h1{margin:0 0 6px;color:var(--accent)}
+    p.lead{color:var(--muted);margin-top:0}
+    .summary{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px}
+    .box{flex:1;min-width:240px;padding:14px;border-radius:10px;border:1px solid #eef6f2}
+    .box h3{margin:0 0 8px;font-size:1rem;color:#004d40}
+    .k{font-weight:700;color:#333}
+    ul.checklist{padding-left:1.1rem;margin:8px 0 0}
+    ul.checklist li{margin:8px 0}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:white}
+    .btn-ghost{background:transparent;border:1px solid #ddd;color:#333}
+    footer{color:var(--muted);margin-top:20px;font-size:0.9rem}
+    @media (max-width:640px){ .summary{flex-direction:column} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="main" aria-labelledby="tyTitle">
+      <h1 id="tyTitle">Thank you — Application received</h1>
+      <p class="lead">We received your payment and submission. Below is a short summary and the next steps to prepare your documents for processing.</p>
+
+      <div id="message" class="note" style="color:var(--muted)"></div>
+
+      <div class="summary" aria-live="polite">
+        <div class="box" id="summaryBox">
+          <h3>Submission summary</h3>
+          <div><span class="k">Name:</span> <span id="sName">—</span></div>
+          <div><span class="k">Email:</span> <span id="sEmail">—</span></div>
+          <div><span class="k">Payment ref:</span> <span id="sRef">—</span></div>
+          <div><span class="k">Application ID:</span> <span id="sApp">—</span></div>
+          <div><span class="k">Job type(s):</span> <span id="sJob">—</span></div>
+          <div style="margin-top:8px;color:var(--muted)">Save the payment reference and application ID — you'll need them for follow-up.</div>
+        </div>
+
+        <div class="box" id="nextSteps">
+          <h3>Next steps — prepare these documents</h3>
+          <ul class="checklist">
+            <li><strong>Valid passport</strong> (scan or photo of bio page)</li>
+            <li><strong>Passport-size photo</strong> (recent; white background preferred)</li>
+            <li><strong>Government ID / national ID</strong> (scan/photo)</li>
+            <li><strong>Updated CV / résumé</strong> (digital copy in PDF/Word)</li>
+            <li>Any relevant certificates/licenses (technical, training)</li>
+            <li>Medical exam & vaccinations (we'll notify if required)</li>
+          </ul>
+
+          <p style="margin-top:10px;color:var(--muted)">
+            We'll email you step-by-step instructions. Dates and interview schedules will be communicated via email/SMS.  
+            Please ensure your CV is ready when dates are provided.
+          </p>
+        </div>
+      </div>
+
+      <section style="margin-top:16px">
+        <h3 style="margin-bottom:6px">Need help?</h3>
+        <p style="color:var(--muted)">If anything looks incorrect, contact support and include your <strong>payment ref</strong> and <strong>application ID</strong> so we can look you up quickly.</p>
+        <div class="btns">
+          <a class="btn btn-primary" id="goHome" href="/">Back to Afrevo</a>
+          <a class="btn btn-ghost" id="downloadReceipt" href="#" onclick="return false;">Copy submission info</a>
+        </div>
+      </section>
+
+      <footer>
+        <div id="supportLine">Support: <a id="supportEmail" href="mailto:support@afrevo.com">support@afrevo.com</a></div>
+        <div style="margin-top:6px">© <span id="year"></span> Afrevo Global Careers</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Read query params
+    function getQuery() {
+      const q = {};
+      const s = location.search.replace(/^\?/, '');
+      if (!s) return q;
+      s.split('&').forEach(pair => {
+        const p = pair.split('=');
+        q[decodeURIComponent(p[0] || '')] = decodeURIComponent((p[1] || ''));
+      });
+      return q;
+    }
+
+    function showSummary(obj) {
+      const name = obj.name || '—';
+      const email = obj.email || '—';
+      const ref = obj.ref || obj.reference || '—';
+      const appId = obj.appId || obj.applicationId || '';
+      const job = obj.job || obj.jobType || obj.jobs || '—';
+
+      document.getElementById('sName').textContent = name;
+      document.getElementById('sEmail').textContent = email;
+      document.getElementById('sRef').textContent = ref;
+      document.getElementById('sApp').textContent = appId || '—';
+      document.getElementById('sJob').textContent = job;
+
+      const message = document.getElementById('message');
+      message.textContent = 'We will send confirmation to ' + (email === '—' ? 'your provided email' : email) + '. Keep the reference and application ID safe.';
+    }
+
+    // Attempt to populate from query params, then sessionStorage fallback
+    (function () {
+      const q = getQuery();
+      let summary = {};
+      if (Object.keys(q).length > 0) {
+        summary = q;
+      } else {
+        try {
+          const s = sessionStorage.getItem('afrevoSubmission');
+          if (s) summary = JSON.parse(s);
+        } catch (e) { }
+      }
+
+      showSummary(summary || {});
+
+      // Download / copy summary button
+      const dl = document.getElementById('downloadReceipt');
+      dl.addEventListener('click', function () {
+        const sName = document.getElementById('sName').textContent;
+        const sEmail = document.getElementById('sEmail').textContent;
+        const sRef = document.getElementById('sRef').textContent;
+        const sApp = document.getElementById('sApp').textContent;
+        const sJob = document.getElementById('sJob').textContent;
+        const text = `Afrevo application\nName: ${sName}\nEmail: ${sEmail}\nPayment ref: ${sRef}\nApplication ID: ${sApp}\nJob type(s): ${sJob}\n\nKeep these details for follow-up.`;
+        // copy to clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            alert('Submission info copied to clipboard. Paste it into an email or save it somewhere safe.');
+          }, () => {
+            prompt('Copy this info manually:', text);
+          });
+        } else {
+          prompt('Copy this info:', text);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

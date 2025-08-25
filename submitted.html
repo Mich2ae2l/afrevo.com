@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Application Submitted - Afrevo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #004aad;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 30px;
+      color: #004aad;
+      border-bottom: 2px solid #004aad;
+      padding-bottom: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      width: 35%;
+      background: #f0f4ff;
+    }
+    .instructions {
+      background: #e7f3ff;
+      border-left: 5px solid #004aad;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 6px;
+    }
+    .instructions h3 {
+      margin-top: 0;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✅ Application Submitted</h1>
+    <p>Thank you for applying with Afrevo. Below is a copy of your submission.</p>
+  </header>
+
+  <div class="container">
+    <h2>Personal Information</h2>
+    <table id="personal"></table>
+
+    <h2>Education & Training</h2>
+    <table id="education"></table>
+
+    <h2>Work Experience</h2>
+    <table id="work"></table>
+
+    <h2>Health & Background</h2>
+    <table id="health"></table>
+
+    <h2>Agreements & Preferences</h2>
+    <table id="agreements"></table>
+
+    <div class="instructions">
+      <h3>Next Steps</h3>
+      <p>Please prepare the following supporting documents for verification:</p>
+      <ul>
+        <li>📌 Passport (if available)</li>
+        <li>📌 Passport-size photographs</li>
+        <li>📌 Driving License</li>
+        <li>📌 Certificate of Good Conduct</li>
+      </ul>
+      <p>If you don’t have a passport yet, you can start the process, or contact us via WhatsApp at <b>+1 716 306 1499</b> for assistance.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Afrevo. All rights reserved.
+  </footer>
+
+  <script>
+    // Parse query string into object
+    function getQueryParams() {
+      var params = {};
+      var qs = window.location.search.substring(1).split("&");
+      qs.forEach(function(pair) {
+        var parts = pair.split("=");
+        params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || "");
+      });
+      return params;
+    }
+
+    var data = getQueryParams();
+
+    // Field grouping by section
+    var sections = {
+      personal: [
+        "Job Codes","Full Name","Date of Birth","ID Number","Nationality",
+        "Country of Residence","Country Code","Phone Number","Email Address",
+        "Marital Status","religious affiliation?","Gender","Number of Dependents"
+      ],
+      education: [
+        "Education Level","Institution Name","Graduation Year","Technical Training",
+        "English Proficiency","Other Languages"
+      ],
+      work: [
+        "Previous Jobs","Years of Experience","Recent Job","Reason for Leaving",
+        "Overseas Experience","Machinery Experience","Physically Demanding Work",
+        "Night Shift Experience","Willing to Relocate"
+      ],
+      health: [
+        "Valid Passport","Passport Number","Travel Restrictions","Travel Readiness",
+        "Cold Remote Work","Ship Work","Disabilities","Surgery Illness","Medications",
+        "Criminal Record","Medical Exam Willing"
+      ],
+      agreements: [
+        "Availability Start","Motivation Strategy","Learning Adaptability",
+        "Team Conflict Resolution","Accept Any Position","Accommodation Agreement",
+        "Overtime Willing","Contract Understanding","Work Duration Abroad",
+        "Family Support","Understand Long Absence","Financial Readiness",
+        "Salary Expectations","Bring Family Later","Rule Agreement"
+      ]
+    };
+
+    // Function to render tables
+    function renderTable(sectionId, fields) {
+      var table = document.getElementById(sectionId);
+      fields.forEach(function(field) {
+        var row = table.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.textContent = field;
+        cell2.textContent = data[field] || "-";
+      });
+    }
+
+    renderTable("personal", sections.personal);
+    renderTable("education", sections.education);
+    renderTable("work", sections.work);
+    renderTable("health", sections.health);
+    renderTable("agreements", sections.agreements);
+  </script>
+</body>
+</html>

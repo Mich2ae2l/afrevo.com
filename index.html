@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Afrevo Global Careers</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      font-size: 12px; /* Reduced base font size */
+      background-color: #f4f9fb;
+      color: #003344;
+      line-height: 1.6;
+    }
+
+    header {
+  background-color: #004d4d;
+  color: white;
+  padding: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 45px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+
+    .hero {
+      background-image: url('images/bg.webp');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      padding: 80px 20px;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 77, 77, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-content p {
+      font-size: 0.95rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #009966;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .cta-button:hover {
+      background-color: #007755;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      padding: 30px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .info-section {
+      background-color: #e6f9f0;
+      padding: 30px 20px;
+    }
+
+    .info-section h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      color: #003d3d;
+    }
+
+    .info-section p {
+      max-width: 800px;
+      margin: 10px auto;
+      text-align: center;
+      color: #003333;
+      font-size: 0.95rem;
+    }
+
+    .founding-info {
+      font-style: italic;
+      color: #006666;
+    }
+
+    .info-section img {
+      display: block;
+      max-width: 95%;
+      margin: 20px auto;
+      border-radius: 8px;
+    }
+
+    .main-content h2 {
+      font-size: 1.3rem;
+      text-align: center;
+      color: #004d4d;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+
+    .contact-details,
+    .contact-map {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .contact-details h3,
+    .contact-map h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #004d4d;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #003333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: #00cc99;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ============================================
+       Animated Images Section (Sequential Fade)
+       ============================================ */
+    .animated-section {
+      position: relative;
+      width: 100%;
+      height: 100vh; /* Adjust height if needed */
+      overflow: hidden;
+    }
+    .animated-section .animated-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 130%;
+      object-fit: cover;
+      opacity: 0;
+      animation: fadeInOut 16s infinite;
+    }
+    /* Stagger each image animation */
+    .animated-section .animated-image:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .animated-section .animated-image:nth-child(2) {
+      animation-delay: 4s;
+    }
+    .animated-section .animated-image:nth-child(3) {
+      animation-delay: 8s;
+    }
+    .animated-section .animated-image:nth-child(4) {
+      animation-delay: 12s;
+    }
+     .animated-section .animated-image:nth-child(4) {
+      animation-delay: 12s;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      30% { opacity: 1; }
+      40% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+  <div class="header-container">
+    <div class="logo">
+      <img src="images/logo.png" alt="Afrevo Logo" />
+      <h1>Afrevo Global Careers</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="opportunities.html">Opportunities</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Afrevo Global Careers</h1>
+      <p>Connecting top talent with international job opportunities</p>
+      <a href="opportunities.html" class="cta-button">Available Jobs</a>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <h2>About Afrevo Global Careers</h2>
+    <p>Afrevo Global Careers is a premier international recruitment agency dedicated to bridging the gap between talented professionals and leading employers worldwide.</p>
+    <p>We partner with employers across America, the Middle East, and Europe to deliver seamless recruitment across sectors like healthcare, engineering, hospitality, and IT.</p>
+    <p class="founding-info">Our company was founded in the USA.</p>
+    <!-- The static image has been removed in favor of the animated section below -->
+  </section>
+
+  <!-- New Animated Images Section -->
+  <section class="animated-section">
+    <img src="images/ship.webp" alt="Image 1" class="animated-image">
+    <img src="images/img2.jpg" alt="Image 2" class="animated-image">
+    <img src="images/img3.jpg" alt="Image 3" class="animated-image">
+    <img src="images/img4.jpg" alt="Image 4" class="animated-image">
+    <img src="images/img1.jpg" alt="Image 4" class="animated-image">
+
+  </section>
+
+  <section class="info-section" style="background-color: #ffffff;">
+    <h2>Our Vision</h2>
+    <p>To be the leading recruitment partner recognized for quality, innovation, and successful placements.</p>
+    <h2>What We Offer</h2>
+    <p><strong>Global Reach with Local Expertise:</strong> We navigate complex international hiring to connect you with the right employer.</p>
+    <p><strong>Tailored Solutions:</strong> We match candidates and employers based on individual needs.</p>
+    <p><strong>Complete Support:</strong> From visa help to onboarding, we’ve got your back.</p>
+    <h2>Our Commitment</h2>
+    <p>We uphold professionalism, transparency, and respect in every recruitment step.</p>
+    <h2>Why Choose Us</h2>
+    <p><strong>Experience:</strong> We’ve placed thousands in roles around the world.</p>
+    <p><strong>Candidate-First:</strong> Your goals are our top priority.</p>
+    <p><strong>Integrity:</strong> We practice ethical recruitment—always.</p>
+    <p style="text-align:center; font-weight: bold;">Let’s build your global career together.</p>
+  </section>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Contact Us</h1>
+    </div>
+  </section>
+
+  <section class="main-content">
+    <div class="container">
+      <h2>Our Contact Information</h2>
+      <div class="contact-info">
+        <div class="contact-details">
+          <h3>Contact Details</h3>
+          <p><strong>Phone:</strong> +1 (716) 306-1499</p>
+          <p><strong>Whatsapp:</strong> +1 (716) 306-1499</p>
+          <p><strong>Email:</strong> fifoafrevo@powerscrews.com</p>
+          <p><strong>Office Address:</strong> 250 Delaware Avenue, Buffalo, NY 14202</p>
+          <p><strong>Working Hours:</strong> Mon - Fri: 9 AM - 5 PM (EDT)</p>
+        </div>
+        <div class="contact-map">
+          <h3>Our Office Location</h3>
+          <iframe src="https://www.google.com/maps?q=250+Delaware+Avenue,+Buffalo,+NY+14202&output=embed" loading="lazy"></iframe>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Afrevo Global Careers. All rights reserved.</p>
+    <p>
+      <a href="faq.html">FAQ</a> |
+      <a href="terms.html">Terms of Service</a> |
+      <a href="#contact-info">Contact Us</a>
+    </p>
+    <p>Whatsapp us at +1(716)-306-1499/</p>
+  </footer>
+</body>
+</html>
